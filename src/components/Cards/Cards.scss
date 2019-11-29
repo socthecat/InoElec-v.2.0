@@ -1,0 +1,41 @@
+#cards-wrapper {
+    margin: 0 auto;
+    width: 60vw;
+    display: flex;
+    place-items: flex-start;
+    .card {
+        h3 {
+            text-align: center;
+            font-family: 'Schoolbell', cursive;
+            font-size: 30px;
+            color: #92677d;
+        }
+        p {
+            text-indent: 30px;
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 22px;
+        }
+        width: 250px;
+        background-color: white;
+        margin: 10px auto;
+        padding: 10px;
+        box-shadow: 0 0 10px #d0a4a9;
+    }
+}
+#cards {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+        font-family: 'Crafty Girls', cursive;
+        text-align: center;
+        color: #3e3232;
+        font-size: 40px;
+        transform: skewX(10deg);
+        display: inline;
+        margin: 0 auto;
+    }
+}

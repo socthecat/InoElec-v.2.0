@@ -1,0 +1,45 @@
+#intro {
+    background-image: url('../../assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    div {
+        position: absolute;
+        width: 80px;
+        left: calc(50% + 80px);
+        transform: rotate(140deg);
+        top: 80px;
+        z-index: 3;
+        pointer-events: none;
+        height: 40px;
+        background: #ffff0085;
+        border-left: 2px dashed yellow;
+    }
+}
+#boy {
+    width: 500px;
+    display: block;
+    position: absolute;
+    left: calc(50% - 250px);
+    bottom: -50px;
+    z-index: 1;
+}
+#inosuke-head {
+    width: 250px;
+    cursor: pointer;
+    display: block;
+    background-color: #fff;
+    padding: 20px;
+    position: absolute;
+    z-index: 2;
+    left: calc(50% - 100px);
+    top: 70px;
+    transform: rotate(15deg);
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.36);
+}
+#inosuke-head:active {
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.36);
+}

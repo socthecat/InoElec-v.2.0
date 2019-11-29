@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Crafty+Girls|Raleway:300|Schoolbell&display=swap');
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #f9e4e6;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+#wrapper {
+    min-height: calc(100vh - 70px)
+}
+
+#filterthing {
+    display: none;
+}
+
+@-webkit-keyframes squiggly-anim {
+    0% {
+      -webkit-filter: url("#squiggly-0");
+              filter: url("#squiggly-0");
+    }
+    25% {
+      -webkit-filter: url("#squiggly-1");
+              filter: url("#squiggly-1");
+    }
+    50% {
+      -webkit-filter: url("#squiggly-2");
+              filter: url("#squiggly-2");
+    }
+    75% {
+      -webkit-filter: url("#squiggly-3");
+              filter: url("#squiggly-3");
+    }
+    100% {
+      -webkit-filter: url("#squiggly-4");
+              filter: url("#squiggly-4");
+    }
+  }
+  @keyframes squiggly-anim {
+    0% {
+      -webkit-filter: url("#squiggly-0");
+              filter: url("#squiggly-0");
+    }
+    25% {
+      -webkit-filter: url("#squiggly-1");
+              filter: url("#squiggly-1");
+    }
+    50% {
+      -webkit-filter: url("#squiggly-2");
+              filter: url("#squiggly-2");
+    }
+    75% {
+      -webkit-filter: url("#squiggly-3");
+              filter: url("#squiggly-3");
+    }
+    100% {
+      -webkit-filter: url("#squiggly-4");
+              filter: url("#squiggly-4");
+    }
+  }
