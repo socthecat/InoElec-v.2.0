@@ -4,7 +4,6 @@ import Header from '../Header/Header'
 import Intro from '../Intro/Intro'
 import Footer from '../Footer/Footer'
 import Cards from '../Cards/Cards'
-import SVGFilter from '../SVGFilter/SVGFilter'
 
 function App () {
   return (
@@ -15,7 +14,6 @@ function App () {
         <Cards title='Reasons trust Insoke???' />
       </div>
       <Footer footerText={`© ${new Date().getFullYear()} Ugarnii Kaban`} />
-      <SVGFilter />
     </>
   )
 }

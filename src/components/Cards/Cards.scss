@@ -9,6 +9,7 @@
             font-family: 'Schoolbell', cursive;
             font-size: 30px;
             color: #92677d;
+            animation: jiggle .1s linear infinite alternate;
         }
         p {
             text-indent: 30px;
@@ -21,6 +22,11 @@
         margin: 10px auto;
         padding: 10px;
         box-shadow: 0 0 10px #d0a4a9;
+    }
+    .card:hover {
+        h3 {
+            animation-play-state: paused
+        }
     }
 }
 #cards {
@@ -37,5 +43,17 @@
         transform: skewX(10deg);
         display: inline;
         margin: 0 auto;
+    }
+}
+
+@keyframes jiggle {
+    0% {
+        transform: none;
+    }
+    50% {
+        transform: skewX(10deg) rotateY(15deg);
+    }
+    100% {
+        transform: skewX(15deg) rotateY(15deg) rotate(-2deg);
     }
 }
