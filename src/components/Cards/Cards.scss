@@ -1,3 +1,60 @@
+@media only screen and (max-width: 700px) {
+    #cards-wrapper {
+        flex-direction: column;
+        .card {
+            width: 60vw;
+        }
+    }
+}
+@media only screen and (min-width: 701px) {
+    .card {
+        width: 19vw;
+    }
+}
+@media only screen and (min-width: 1920px){
+    .card {
+        h3 {
+            font-size: 60px;
+        }
+        p {
+            text-indent: 60px;
+            padding: 10px 0;
+            font-size: 36px;
+            line-height: 44px;
+        }
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0 0 20px #d0a4a9;
+    }
+    #cards {
+        padding: 40px 0;
+        h2 {
+            font-size: 80px;
+        }
+    }
+}
+@media only screen and (max-width: 1919px){
+    .card {
+        h3 {
+            font-size: 30px;
+        }
+        p {
+            text-indent: 30px;
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 22px;
+        }
+        margin: 10px auto;
+        padding: 10px;
+        box-shadow: 0 0 10px #d0a4a9;
+    }
+    #cards {
+        padding: 20px 0;
+        h2 {
+            font-size: 40px;
+        }
+    }
+}
 #cards-wrapper {
     margin: 0 auto;
     width: 60vw;
@@ -7,21 +64,10 @@
         h3 {
             text-align: center;
             font-family: 'Schoolbell', cursive;
-            font-size: 30px;
             color: #92677d;
             animation: jiggle .1s linear infinite alternate;
         }
-        p {
-            text-indent: 30px;
-            padding: 5px 0;
-            font-size: 18px;
-            line-height: 22px;
-        }
-        width: 250px;
         background-color: white;
-        margin: 10px auto;
-        padding: 10px;
-        box-shadow: 0 0 10px #d0a4a9;
     }
     .card:hover {
         h3 {
@@ -31,7 +77,6 @@
 }
 #cards {
     width: 100%;
-    padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,7 +84,6 @@
         font-family: 'Crafty Girls', cursive;
         text-align: center;
         color: #3e3232;
-        font-size: 40px;
         transform: skewX(10deg);
         display: inline;
         margin: 0 auto;

@@ -1,6 +1,17 @@
+@media only screen and (min-width: 1920px){
+    footer {
+        height: 140px;
+        font-size: 32px;
+    }
+}
+@media only screen and (max-width: 1919px){
+    footer {
+        height: 70px;
+        font-size: 16px;
+    }
+}
 footer {
     background-color: #d4cebe;
-    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;

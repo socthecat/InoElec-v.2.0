@@ -1,14 +1,59 @@
 $wiggle: jiggle .1s linear infinite alternate;
 
+@media only screen and (min-width: 1920px) {
+    header {
+        padding: 14px 0;
+        box-shadow: 0 4px 14px rgba(86, 0, 86, 0.5);
+        #logo {
+            font-size: 50px;
+            text-shadow: 0 0 14px rgba(86, 0, 86, 0.4);
+        }
+        svg {
+            width: 100px;
+            height: 78px;
+        }
+        nav {
+            width: 400px;
+            font-size: 40px;
+        }
+    }
+}
+@media only screen and (max-width: 1919px) {
+    header {
+        padding: 7px 0;
+        box-shadow: 0 2px 7px rgba(86, 0, 86, 0.5);
+        #logo {
+            font-size: 25px;
+            text-shadow: 0 0 7px rgba(86, 0, 86, 0.4);
+        }
+        svg {
+            width: 50px;
+            height: 39px;
+        }
+        nav {
+            width: 200px;
+            font-size: 20px;
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    header {
+        #logo {
+            width: auto;
+        }
+        span {
+            display: none;
+        }
+    }
+}
+
 header {
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #fcced3;
-    padding: 7px 0;
     position: relative;
     z-index: 5;
-    box-shadow: 0 2px 7px rgba(86, 0, 86, 0.5);
 
     ul {
         display: flex;
@@ -19,14 +64,9 @@ header {
         display: flex;
         align-items: center;
         font-family: 'Schoolbell', cursive;
-        font-size: 25px;
         justify-content: space-between;
-        width: 250px;
         color: #560056;
-        text-shadow: 0 0 7px rgba(86, 0, 86, 0.4);
         svg {
-            width: 50px;
-            height: 39px;
             fill: rgba(40, 0, 40, 0.5);
         }
         span:hover {
@@ -35,9 +75,7 @@ header {
         }
     }
     nav {
-        width: 200px;
         font-family: 'Crafty Girls', cursive;
-        font-size: 20px;
         li:hover {
             -webkit-animation: $wiggle;
             animation: $wiggle;

@@ -16,9 +16,15 @@ ul {
 a {
     text-decoration: none;
 }
-
-#wrapper {
+@media only screen and (min-width: 1920px){
+  #wrapper {
+    min-height: calc(100vh - 140px)
+}
+}
+@media only screen and (max-width: 1919px){
+  #wrapper {
     min-height: calc(100vh - 70px)
+}
 }
 
 #filterthing {
