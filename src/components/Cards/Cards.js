@@ -119,12 +119,12 @@ export default class Header extends Component {
                 <h3>{card.title}</h3>
                 <p>{card.text}</p>
                 <button onClick={()=>this.editForm(card.id)}>Edit</button>
-                <button onClick={()=>this.deleteItem(card.id)}>X</button>
+                <button style={{float: 'right'}} onClick={()=>this.deleteItem(card.id)}>X</button>
               </div>
             )
           })}
         </div>
-        {!this.state.switcharoo &&<button onClick={this.switch}>+</button>}
+        {!this.state.switcharoo && !this.state.switchajing &&<button onClick={this.switch}>+</button>}
         {this.state.switcharoo && this.formThing()}
         {this.state.switchajing && this.form2()}
       </section>

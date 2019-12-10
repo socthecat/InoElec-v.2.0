@@ -89,6 +89,18 @@
         display: inline;
         margin: 0 auto;
     }
+    button {
+        margin: 0 auto;
+        display: inline-block;
+        padding: 5px 10px;
+    }
+    form {
+        display: flex;
+        margin: 5px;
+    }
+    form * {
+        margin: 2px;
+    }
 }
 
 @keyframes jiggle {
