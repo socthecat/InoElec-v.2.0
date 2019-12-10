@@ -57,9 +57,10 @@
 }
 #cards-wrapper {
     margin: 0 auto;
-    width: 60vw;
+    width: 90vw;
     display: flex;
     place-items: flex-start;
+    justify-content: center;
     .card {
         h3 {
             text-align: center;
