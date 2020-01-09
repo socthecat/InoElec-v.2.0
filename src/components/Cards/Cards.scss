@@ -2,13 +2,13 @@
     #cards-wrapper {
         flex-direction: column;
         .card {
-            width: 60vw;
+            width: 90vw;
         }
     }
 }
 @media only screen and (min-width: 701px) {
     .card {
-        width: 19vw;
+        width: 80vw;
     }
 }
 @media only screen and (min-width: 1920px){
@@ -60,6 +60,7 @@
     width: 90vw;
     display: flex;
     place-items: flex-start;
+    flex-direction: column;
     justify-content: center;
     .card {
         h3 {

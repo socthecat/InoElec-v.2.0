@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Cards.scss'
 import update from 'immutability-helper'
+import starships from '../../services/services'
 
 export default class Header extends Component {
   constructor (props) {
@@ -40,6 +41,24 @@ export default class Header extends Component {
     this.setState({switcharoo: true})
   }
 
+  componentDidMount = () => {
+    let arrobj = starships.get().then(sh => {
+      let arr = []
+      for(let i = 0; i < sh.data.results.length; i++){
+        arr.push(
+          {
+            title: sh.data.results[i].name,
+            text: sh.data.results[i].model + ', ' + sh.data.results[i].manufacturer,
+            id: i
+          }
+        )
+      }
+      this.setState({cards: arr})
+      return arr
+    })
+    console.log(arrobj)
+    console.log(this.state.cards)
+  }
   formThing = () => {
     return (
       <form onSubmit={this.addItem}>
