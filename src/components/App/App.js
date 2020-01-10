@@ -11,7 +11,7 @@ function App () {
       <div id='wrapper'>
         <Header />
         <Intro />
-        <Cards title='Reasons trust Insoke???' />
+        <Cards title='Inosuke identifies as:' />
       </div>
       <Footer footerText={`© ${new Date().getFullYear()} Ugarnii Kaban`} />
     </>

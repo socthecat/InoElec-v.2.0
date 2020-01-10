@@ -1,50 +1,29 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Cards.scss'
 import update from 'immutability-helper'
 import starships from '../../services/services'
 
-export default class Header extends Component {
-  constructor (props) {
-    super(props)
-    this.rrefs = {
-      titleRef: React.createRef(),
-      textRef: React.createRef()
-    }
-    this.state = {
-      cards:
-        [
-          {
-            title: 'Inske strong!!!',
-            text: 'Isknoe beat ervbody AND theyre mums!!! And u!! Nooone beat Inksoe!! Only very stron be strnog as Inoske but yu no strong you weak!',
-            id: 1
-          },
-          {
-            title: 'Good swords!!',
-            text: 'My swords r as strong as me! Can beat evryone with swords!! When swords break get new sword but swords neve r braek!',
-            id: 2
-          },
-          {
-            title: 'Remember name',
-            text: 'Remember evr nme and can spell gud. When spell bad reread. never forget anything please trust',
-            id: 3
-          }
-        ],
-      switcharoo: false,
-      switchajing: false,
-      tempId: undefined,
-      tempTitle: undefined,
-      tempText: undefined
-    }
+export default function Cards (props) {
+  // refs
+  const titleRef = React.createRef()
+  const textRef = React.createRef()
+
+  // state
+  const [cards, setCards] = useState([])
+  const [switcharoo, setSwitcharoo] = useState(false)
+  const [switchajing, setSwitchajing] = useState(false)
+  const [tempId, setTempId] = useState(undefined)
+  const [tempTitle, setTempTitle] = useState(undefined)
+  const [tempText, setTempText] = useState(undefined)
+
+  function switchFunc () {
+    setSwitcharoo(true)
   }
 
-  switch = () => {
-    this.setState({switcharoo: true})
-  }
-
-  componentDidMount = () => {
-    let arrobj = starships.get().then(sh => {
-      let arr = []
-      for(let i = 0; i < sh.data.results.length; i++){
+  useEffect(() => {
+    starships.get().then(sh => {
+      const arr = []
+      for (let i = 0; i < sh.data.results.length; i++) {
         arr.push(
           {
             title: sh.data.results[i].name,
@@ -53,100 +32,100 @@ export default class Header extends Component {
           }
         )
       }
-      this.setState({cards: arr})
+      setCards(arr)
       return arr
     })
-    console.log(arrobj)
-    console.log(this.state.cards)
-  }
-  formThing = () => {
+  }, [])
+
+  function formThing () {
     return (
-      <form onSubmit={this.addItem}>
-        <input type='text' ref={this.rrefs.titleRef} placeholder='Title' />
-        <textarea ref={this.rrefs.textRef} placeholder='Text' />
+      <form onSubmit={addItem}>
+        <input type='text' ref={titleRef} placeholder='Title' />
+        <textarea ref={textRef} placeholder='Text' />
         <button type='submit'>Add</button>
       </form>
     )
   }
-  editItem = (e) => {
-    const id = this.state.tempId
+
+  function editItem (e) {
+    const id = tempId
     e.preventDefault()
-    let tempObj = Object.assign(this.state.cards)
-    for(let i= 0; i < tempObj.length; i++) {
-      if(tempObj[i].id === id) {
-        tempObj[i].title = this.rrefs.titleRef.current.value
-        tempObj[i].text = this.rrefs.textRef.current.value
+    const tempObj = Object.assign(cards)
+    for (let i = 0; i < tempObj.length; i++) {
+      if (tempObj[i].id === id) {
+        tempObj[i].title = titleRef.current.value
+        tempObj[i].text = textRef.current.value
       }
     }
-    const newCard = update(this.state.cards, {
+    const newCard = update(cards, {
       $set: tempObj
     })
-    this.setState({cards: newCard})
-    this.setState({switchajing: false})
+    setCards(newCard)
+    setSwitchajing(false)
   }
-  editForm = (id) => {
-    this.state.cards.forEach((item) => {
-      if(item.id === id) {
-        this.setState({tempTitle: item.title})
-        this.setState({tempText: item.text})
+
+  function editForm (id) {
+    cards.forEach((item) => {
+      if (item.id === id) {
+        setTempTitle(item.title)
+        setTempText(item.text)
       }
     })
-    this.setState({tempId: id})
-    this.setState({switchajing: true})
+    setTempId(id)
+    setSwitchajing(true)
   }
-  form2 = () => {
-    return(
-      <form onSubmit={this.editItem}>
-        <input type='text' ref={this.rrefs.titleRef} defaultValue={this.state.tempTitle}/>
-        <textarea ref={this.rrefs.textRef} defaultValue={this.state.tempText}/>
+
+  function form2 () {
+    return (
+      <form onSubmit={editItem}>
+        <input type='text' ref={titleRef} defaultValue={tempTitle} />
+        <textarea ref={textRef} defaultValue={tempText} />
         <button type='submit'>Change</button>
       </form>
     )
   }
-  addItem = (e) => {
+
+  function addItem (e) {
     e.preventDefault()
-    const title = this.rrefs.titleRef.current.value
-    const text = this.rrefs.textRef.current.value
-    if(text !== '' && title !== ''){
-      const newCard = update(this.state.cards, {
+    const title = titleRef.current.value
+    const text = textRef.current.value
+    if (text !== '' && title !== '') {
+      const newCard = update(cards, {
         $push: [{
           title: title,
           text: text,
           id: Date.now()
         }]
       })
-      this.setState({cards: newCard})
+      setCards(newCard)
     }
-    this.setState({switcharoo: false})
+    setSwitcharoo(false)
   }
 
-  deleteItem = (key) => {
-    const filteredItems= this.state.cards.filter(card =>
-      card.id!==key);
-    this.setState({
-      cards: filteredItems
-    })
+  function deleteItem (key) {
+    const filteredItems = cards.filter(card =>
+      card.id !== key)
+    setCards(filteredItems)
   }
-  render () {
-    return (
-      <section id='cards'>
-        <h2>{this.props.title}</h2>
-        <div id='cards-wrapper'>
-          {this.state.cards.map((card) => {
-            return (
-              <div className='card' key={card.id}>
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-                <button onClick={()=>this.editForm(card.id)}>Edit</button>
-                <button style={{float: 'right'}} onClick={()=>this.deleteItem(card.id)}>X</button>
-              </div>
-            )
-          })}
-        </div>
-        {!this.state.switcharoo && !this.state.switchajing &&<button onClick={this.switch}>+</button>}
-        {this.state.switcharoo && this.formThing()}
-        {this.state.switchajing && this.form2()}
-      </section>
-    )
-  }
+
+  return (
+    <section id='cards'>
+      <h2>{props.title}</h2>
+      <div id='cards-wrapper'>
+        {cards.map((card) => {
+          return (
+            <div className='card' key={card.id}>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <button onClick={() => editForm(card.id)}>Edit</button>
+              <button style={{ float: 'right' }} onClick={() => deleteItem(card.id)}>X</button>
+            </div>
+          )
+        })}
+      </div>
+      {!switcharoo && !switchajing && <button onClick={switchFunc}>+</button>}
+      {switcharoo && formThing()}
+      {switchajing && form2()}
+    </section>
+  )
 }
