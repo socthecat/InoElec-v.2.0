@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Cards.scss'
 import update from 'immutability-helper'
 import starships from '../../services/services'
+import Card from './Card/Card'
 
 export default function Cards (props) {
   // refs
@@ -10,15 +11,8 @@ export default function Cards (props) {
 
   // state
   const [cards, setCards] = useState([])
-  const [switcharoo, setSwitcharoo] = useState(false)
-  const [switchajing, setSwitchajing] = useState(false)
-  const [tempId, setTempId] = useState(undefined)
-  const [tempTitle, setTempTitle] = useState(undefined)
-  const [tempText, setTempText] = useState(undefined)
-
-  function switchFunc () {
-    setSwitcharoo(true)
-  }
+  const [showForm, setShowForm] = useState(false)
+  const [nextId, setNextId] = useState(0)
 
   useEffect(() => {
     starships.get().then(sh => {
@@ -33,11 +27,12 @@ export default function Cards (props) {
         )
       }
       setCards(arr)
+      setNextId(sh.data.results.length + 1)
       return arr
     })
   }, [])
 
-  function formThing () {
+  function addItemForm () {
     return (
       <form onSubmit={addItem}>
         <input type='text' ref={titleRef} placeholder='Title' />
@@ -47,42 +42,19 @@ export default function Cards (props) {
     )
   }
 
-  function editItem (e) {
-    const id = tempId
-    e.preventDefault()
-    const tempObj = Object.assign(cards)
-    for (let i = 0; i < tempObj.length; i++) {
-      if (tempObj[i].id === id) {
-        tempObj[i].title = titleRef.current.value
-        tempObj[i].text = textRef.current.value
+  function findAndReplace (id, title, text) {
+    const arr = Object.assign(cards)
+    arr.find((o, i) => {
+      if (o.id === id) {
+        arr[i] = { title: title, text: text, id: id }
+        return true
       }
-    }
+      return false
+    })
     const newCard = update(cards, {
-      $set: tempObj
+      $set: arr
     })
     setCards(newCard)
-    setSwitchajing(false)
-  }
-
-  function editForm (id) {
-    cards.forEach((item) => {
-      if (item.id === id) {
-        setTempTitle(item.title)
-        setTempText(item.text)
-      }
-    })
-    setTempId(id)
-    setSwitchajing(true)
-  }
-
-  function form2 () {
-    return (
-      <form onSubmit={editItem}>
-        <input type='text' ref={titleRef} defaultValue={tempTitle} />
-        <textarea ref={textRef} defaultValue={tempText} />
-        <button type='submit'>Change</button>
-      </form>
-    )
   }
 
   function addItem (e) {
@@ -94,18 +66,13 @@ export default function Cards (props) {
         $push: [{
           title: title,
           text: text,
-          id: Date.now()
+          id: nextId
         }]
       })
       setCards(newCard)
+      setNextId(nextId + 1)
     }
-    setSwitcharoo(false)
-  }
-
-  function deleteItem (key) {
-    const filteredItems = cards.filter(card =>
-      card.id !== key)
-    setCards(filteredItems)
+    setShowForm(false)
   }
 
   return (
@@ -114,18 +81,18 @@ export default function Cards (props) {
       <div id='cards-wrapper'>
         {cards.map((card) => {
           return (
-            <div className='card' key={card.id}>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <button onClick={() => editForm(card.id)}>Edit</button>
-              <button style={{ float: 'right' }} onClick={() => deleteItem(card.id)}>X</button>
-            </div>
+            <Card
+              key={card.id}
+              id={card.id}
+              title={card.title}
+              text={card.text}
+              findAndReplace={findAndReplace}
+            />
           )
         })}
       </div>
-      {!switcharoo && !switchajing && <button onClick={switchFunc}>+</button>}
-      {switcharoo && formThing()}
-      {switchajing && form2()}
+      {!showForm && <button onClick={() => setShowForm(true)}>+</button>}
+      {showForm && addItemForm()}
     </section>
   )
 }

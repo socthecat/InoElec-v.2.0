@@ -13,7 +13,7 @@
 }
 @media only screen and (min-width: 1920px){
     .card {
-        h3 {
+        h3, input[type=text] {
             font-size: 60px;
         }
         p {
@@ -21,6 +21,13 @@
             padding: 10px 0;
             font-size: 36px;
             line-height: 44px;
+        }
+        textarea {
+            text-indent: 40px;
+            padding: 10px 0;
+            font-size: 36px;
+            line-height: 44px;
+            font-family: Raleway;
         }
         margin: 20px auto;
         padding: 20px;
@@ -35,7 +42,7 @@
 }
 @media only screen and (max-width: 1919px){
     .card {
-        h3 {
+        h3, input[type=text] {
             font-size: 30px;
         }
         p {
@@ -43,6 +50,13 @@
             padding: 5px 0;
             font-size: 18px;
             line-height: 22px;
+        }
+        textarea {
+            text-indent: 20px;
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 22px;
+            font-family: Raleway;
         }
         margin: 10px auto;
         padding: 10px;
@@ -70,6 +84,12 @@
             animation: jiggle .1s linear infinite alternate;
         }
         background-color: white;
+        input[type=text] {
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Schoolbell', cursive;
+            color: #92677d;
+        }
     }
     .card:hover {
         h3 {
@@ -97,6 +117,7 @@
     }
     form {
         display: flex;
+        flex-direction: column;
         margin: 5px;
     }
     form * {
