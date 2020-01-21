@@ -1,21 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FormEvent } from 'react'
 import './Cards.scss'
 import update from 'immutability-helper'
 import starships from '../../services/services'
 import Card from './Card/Card'
 
-export default function Cards (props) {
+interface IProps {
+  title: string
+}
+
+const Cards: React.FC<IProps> = (props) => {
   // refs
-  const titleRef = React.createRef()
-  const textRef = React.createRef()
+  const titleRef = React.createRef<HTMLInputElement>()
+  const textRef = React.createRef<HTMLTextAreaElement>()
 
   // state
-  const [cards, setCards] = useState([])
+  const [cards, setCards] = useState([
+    {
+      title: 'test',
+      text: 'test',
+      id: 22
+    }
+  ])
   const [showForm, setShowForm] = useState(false)
   const [nextId, setNextId] = useState(0)
 
   useEffect(() => {
-    starships.get().then(sh => {
+    starships.get('').then((sh: { data: { results: string | any[] } }) => {
       const arr = []
       for (let i = 0; i < sh.data.results.length; i++) {
         arr.push(
@@ -42,9 +52,9 @@ export default function Cards (props) {
     )
   }
 
-  function findAndReplace (id, title, text) {
+  function findAndReplace (id: number, title: string, text: string) {
     const arr = Object.assign(cards)
-    arr.find((o, i) => {
+    arr.find((o: { id: number }, i: React.ReactText) => {
       if (o.id === id) {
         arr[i] = { title: title, text: text, id: id }
         return true
@@ -57,20 +67,22 @@ export default function Cards (props) {
     setCards(newCard)
   }
 
-  function addItem (e) {
+  function addItem (e: FormEvent) {
     e.preventDefault()
-    const title = titleRef.current.value
-    const text = textRef.current.value
-    if (text !== '' && title !== '') {
-      const newCard = update(cards, {
-        $push: [{
-          title: title,
-          text: text,
-          id: nextId
-        }]
-      })
-      setCards(newCard)
-      setNextId(nextId + 1)
+    if(titleRef.current && textRef.current){
+      const title = titleRef.current.value
+      const text = textRef.current.value
+      if (text && title) {
+        const newCard = update(cards, {
+          $push: [{
+            title: title,
+            text: text,
+            id: nextId
+          }]
+        })
+        setCards(newCard)
+        setNextId(nextId + 1)
+      }
     }
     setShowForm(false)
   }
@@ -96,3 +108,5 @@ export default function Cards (props) {
     </section>
   )
 }
+
+export default Cards

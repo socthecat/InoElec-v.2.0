@@ -83,6 +83,9 @@
             color: #92677d;
             animation: jiggle .1s linear infinite alternate;
         }
+        textarea {
+            resize: vertical;
+        }
         background-color: white;
         input[type=text] {
             font-weight: 700;

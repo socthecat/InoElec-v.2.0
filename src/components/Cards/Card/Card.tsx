@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, FormEvent } from 'react'
 
-export default function Card (props) {
-  const titleRef = React.createRef()
-  const textRef = React.createRef()
+interface IProps {
+  title: string
+  text: string
+  id: number
+  findAndReplace(id: number, title: string, text: string): void
+}
+
+const Card: React.FC<IProps> = (props) => {
+  const titleRef = React.createRef<HTMLInputElement>()
+  const textRef = React.createRef<HTMLTextAreaElement>()
 
   const [title, setTitle] = useState(props.title)
   const [text, setText] = useState(props.text)
@@ -14,10 +21,12 @@ export default function Card (props) {
     setEdit(true)
   }
 
-  function submit (e) {
+  function submit (e: FormEvent) {
     e.preventDefault()
-    setTitle(titleRef.current.value)
-    setText(textRef.current.value)
+    if(titleRef.current && textRef.current) {
+      setTitle(titleRef.current.value)
+      setText(textRef.current.value)
+    }
     props.findAndReplace(props.id, title, text)
     setEdit(false)
   }
@@ -42,3 +51,5 @@ export default function Card (props) {
     </>
   )
 }
+
+export default Card

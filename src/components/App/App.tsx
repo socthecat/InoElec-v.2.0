@@ -5,7 +5,7 @@ import Intro from '../Intro/Intro'
 import Footer from '../Footer/Footer'
 import Cards from '../Cards/Cards'
 
-function App () {
+const App: React.FC = () => {
   return (
     <>
       <div id='wrapper'>
