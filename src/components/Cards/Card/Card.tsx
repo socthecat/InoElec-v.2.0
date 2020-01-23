@@ -40,11 +40,13 @@ const Card: React.FC<IProps> = (props) => {
       {isRendered &&
         <div className='card'>
           {isEdit &&
-            <form onSubmit={submit}>
+          <>
+            <form id='edit-form' onSubmit={submit}>
               <input type='text' ref={titleRef} defaultValue={title} />
               <textarea ref={textRef} defaultValue={text} />
-              <button type='submit'>Change</button>
-            </form>}
+            </form>
+            <button type='submit' form="edit-form">Change</button>
+          </>}
           {!isEdit && <><h3>{title}</h3><p>{text}</p><button onClick={() => edit()}>Edit</button></>}
           <button style={{ float: 'right' }} onClick={() => deleteItem()}>X</button>
         </div>}

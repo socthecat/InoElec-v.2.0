@@ -3,43 +3,43 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 500px;
+    height: 39.063vw;
     position: relative;
     overflow: hidden;
     div {
         position: absolute;
-        width: 80px;
-        left: calc(50% + 80px);
+        width: 6.25vw;
+        left: calc(50% + 6.25vw);
         transform: rotate(140deg);
-        top: 80px;
+        top: 6.25vw;
         z-index: 3;
         pointer-events: none;
-        height: 40px;
+        height: 3.125vw;
         background: rgba(255, 255, 0, 0.5);
-        border-left: 2px dashed yellow;
+        border-left: 0.156vw dashed yellow;
     }
 }
 #boy {
-    width: 500px;
+    width: 39.063vw;
     display: block;
     position: absolute;
-    left: calc(50% - 250px);
-    bottom: -50px;
+    left: calc(50% - 19.531vw);
+    bottom: -3.906vw;
     z-index: 1;
 }
 #inosuke-head {
-    width: 250px;
+    width: 19.531vw;
     cursor: pointer;
     display: block;
     background-color: #fff;
-    padding: 20px;
+    padding: 1.563vw;
     position: absolute;
     z-index: 2;
-    left: calc(50% - 100px);
-    top: 70px;
+    left: calc(50% - 7.813vw);
+    top: 5.469vw;
     transform: rotate(15deg);
-    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.36);
+    box-shadow: 0.391vw 0.625vw 0.781vw rgba(0, 0, 0, 0.36);
 }
 #inosuke-head:active {
-    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.36);
+    box-shadow: 0.234vw 0.391vw 0.391vw rgba(0, 0, 0, 0.36);
 }

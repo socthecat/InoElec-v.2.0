@@ -44,7 +44,7 @@ const Cards: React.FC<IProps> = (props) => {
 
   function addItemForm () {
     return (
-      <form onSubmit={addItem}>
+      <form className='FormikForm' onSubmit={addItem}>
         <input type='text' ref={titleRef} placeholder='Title' />
         <textarea ref={textRef} placeholder='Text' />
         <button type='submit'>Add</button>

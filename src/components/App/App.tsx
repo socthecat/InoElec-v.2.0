@@ -1,20 +1,25 @@
 import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.scss'
 import Header from '../Header/Header'
 import Intro from '../Intro/Intro'
 import Footer from '../Footer/Footer'
 import Cards from '../Cards/Cards'
+import FormikForm from '../FormikForm/FormikForm'
 
 const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <div id='wrapper'>
         <Header />
-        <Intro />
-        <Cards title='Inosuke identifies as:' />
+        <Switch>
+          <Route exact path='/' component={Intro} />
+          <Route path='/goals' render={(props) => <Cards {...props} title='Inosuke identifies as:'/>} />
+          <Route path='/formik' component={FormikForm} />
+        </Switch>
       </div>
-      <Footer footerText={`© ${new Date().getFullYear()} Ugarnii Kaban`} />
-    </>
+      <Footer footerText={`© 2019-${new Date().getFullYear()} Ugarnii Kaban`} />
+    </BrowserRouter>
   )
 }
 

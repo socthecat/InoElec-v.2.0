@@ -22,13 +22,6 @@
             font-size: 36px;
             line-height: 44px;
         }
-        textarea {
-            text-indent: 40px;
-            padding: 10px 0;
-            font-size: 36px;
-            line-height: 44px;
-            font-family: Raleway;
-        }
         margin: 20px auto;
         padding: 20px;
         box-shadow: 0 0 20px #d0a4a9;
@@ -50,13 +43,6 @@
             padding: 5px 0;
             font-size: 18px;
             line-height: 22px;
-        }
-        textarea {
-            text-indent: 20px;
-            padding: 5px 0;
-            font-size: 18px;
-            line-height: 22px;
-            font-family: Raleway;
         }
         margin: 10px auto;
         padding: 10px;
@@ -83,15 +69,20 @@
             color: #92677d;
             animation: jiggle .1s linear infinite alternate;
         }
-        textarea {
-            resize: vertical;
-        }
         background-color: white;
         input[type=text] {
             font-weight: 700;
             text-align: center;
             font-family: 'Schoolbell', cursive;
             color: #92677d;
+            border: 1px solid #a9a9a9;
+        }
+        textarea {
+            text-indent: 20px;
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 22px;
+            font-family: Raleway;
         }
     }
     .card:hover {
@@ -114,9 +105,23 @@
         margin: 0 auto;
     }
     button {
-        margin: 0 auto;
-        display: inline-block;
-        padding: 5px 10px;
+        background-color: #ffc6dc;
+        border: 0;
+        border-radius: 30px;
+        padding: 10px 20px;
+        color: #66153e;
+        font-family: Raleway;
+        font-size: 18px;
+        align-self: center;
+        cursor: pointer;
+        text-shadow: 0 0 10px #d23f8a;
+    }
+    button:active{
+        transform: scale(.9);
+    }
+    button:focus, input:focus, textarea:focus {
+        box-shadow: 0 0 7px #e4a6da;
+        outline: none;
     }
     form {
         display: flex;
