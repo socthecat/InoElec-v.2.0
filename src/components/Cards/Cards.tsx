@@ -1,46 +1,32 @@
 import React, { useState, useEffect, FormEvent } from 'react'
 import './Cards.scss'
-import update from 'immutability-helper'
-import starships from '../../services/services'
-import Card from './Card/Card'
+import Card from './Card/index'
+
+interface IState {
+  title: string
+  text: string
+  id: number
+}
 
 interface IProps {
   title: string
+  fetchItems: Function
+  addItem: Function
+  cardState: IState[]
 }
 
 const Cards: React.FC<IProps> = (props) => {
   // refs
   const titleRef = React.createRef<HTMLInputElement>()
   const textRef = React.createRef<HTMLTextAreaElement>()
-
   // state
-  const [cards, setCards] = useState([
-    {
-      title: 'test',
-      text: 'test',
-      id: 22
-    }
-  ])
+  const [cards, setCards] = useState(props.cardState)
   const [showForm, setShowForm] = useState(false)
-  const [nextId, setNextId] = useState(0)
 
   useEffect(() => {
-    starships.get('').then((sh: { data: { results: string | any[] } }) => {
-      const arr = []
-      for (let i = 0; i < sh.data.results.length; i++) {
-        arr.push(
-          {
-            title: sh.data.results[i].name,
-            text: sh.data.results[i].model + ', ' + sh.data.results[i].manufacturer,
-            id: i
-          }
-        )
-      }
-      setCards(arr)
-      setNextId(sh.data.results.length + 1)
-      return arr
-    })
-  }, [])
+    console.log('props: ', props)
+    setCards(props.cardState)
+  }, [props])
 
   function addItemForm () {
     return (
@@ -52,37 +38,14 @@ const Cards: React.FC<IProps> = (props) => {
     )
   }
 
-  function findAndReplace (id: number, title: string, text: string) {
-    const arr = Object.assign(cards)
-    arr.find((o: { id: number }, i: React.ReactText) => {
-      if (o.id === id) {
-        arr[i] = { title: title, text: text, id: id }
-        return true
-      }
-      return false
-    })
-    const newCard = update(cards, {
-      $set: arr
-    })
-    setCards(newCard)
-  }
-
   function addItem (e: FormEvent) {
     e.preventDefault()
     if(titleRef.current && textRef.current){
-      const title = titleRef.current.value
-      const text = textRef.current.value
-      if (text && title) {
-        const newCard = update(cards, {
-          $push: [{
-            title: title,
-            text: text,
-            id: nextId
-          }]
+        props.addItem({
+          title: titleRef.current.value,
+          text: textRef.current.value,
+          id: Date.now()
         })
-        setCards(newCard)
-        setNextId(nextId + 1)
-      }
     }
     setShowForm(false)
   }
@@ -98,7 +61,6 @@ const Cards: React.FC<IProps> = (props) => {
               id={card.id}
               title={card.title}
               text={card.text}
-              findAndReplace={findAndReplace}
             />
           )
         })}
