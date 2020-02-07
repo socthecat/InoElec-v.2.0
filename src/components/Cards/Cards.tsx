@@ -41,11 +41,13 @@ const Cards: React.FC<IProps> = (props) => {
   function addItem (e: FormEvent) {
     e.preventDefault()
     if(titleRef.current && textRef.current){
-        props.addItem({
-          title: titleRef.current.value,
-          text: textRef.current.value,
-          id: Date.now()
-        })
+      if(titleRef.current.value && textRef.current.value){
+          props.addItem({
+            title: titleRef.current.value,
+            text: textRef.current.value,
+            id: Date.now()
+          })
+      }
     }
     setShowForm(false)
   }
