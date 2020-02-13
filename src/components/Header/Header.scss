@@ -34,6 +34,9 @@ $wiggle: jiggle .1s linear infinite alternate;
             width: 400px;
             font-size: 20px;
         }
+        ul {
+            justify-content: space-between;
+        }
     }
 }
 @media only screen and (max-width: 600px) {
@@ -43,6 +46,12 @@ $wiggle: jiggle .1s linear infinite alternate;
         }
         span {
             display: none;
+        }
+        li:nth-of-type(3) {
+            display: none;
+        }
+        ul {
+            justify-content: space-around;
         }
     }
 }
@@ -57,7 +66,6 @@ header {
 
     ul {
         display: flex;
-        justify-content: space-between;
     }
 
     #logo {

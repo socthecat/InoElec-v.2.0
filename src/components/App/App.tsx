@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div id='wrapper'>
+        <div id='wrapper' data-testid='wrapper'>
           <Header />
           <Switch>
             <Route exact path='/' component={Intro} />

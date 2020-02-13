@@ -1,42 +1,74 @@
+@media only screen and (min-width: 1920px) {
+    #intro {
+        div {
+            width: 160px;
+            left: calc(50% + 160px);
+            bottom: 764px;
+            height: 80px;
+        }
+        #boy {
+            width: 1000px;
+            left: calc(50% - 500px);
+            bottom: -100px;
+        }
+        #inosuke-head {
+            width: 500px;
+            padding: 40px;
+            left: calc(50% - 200px);
+            bottom: 471px;
+        }
+    }
+}
+
+@media only screen and (max-width: 1919px) {
+    #intro {
+        div {
+            width: 80px;
+            left: calc(50% + 80px);
+            bottom: 384px;
+            height: 40px;
+        }
+        #boy {
+            width: 500px;
+            left: calc(50% - 250px);
+            bottom: -50px;
+        }
+        #inosuke-head {
+            width: 250px;
+            padding: 20px;
+            left: calc(50% - 100px);
+            bottom: 235.5px;
+        }
+    }
+}
 #intro {
+    height: 100vh;
     background-image: url('../../assets/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 39.063vw;
     position: relative;
     overflow: hidden;
     div {
         position: absolute;
-        width: 6.25vw;
-        left: calc(50% + 6.25vw);
         transform: rotate(140deg);
-        top: 6.25vw;
         z-index: 3;
         pointer-events: none;
-        height: 3.125vw;
         background: rgba(255, 255, 0, 0.5);
         border-left: 0.156vw dashed yellow;
     }
 }
 #boy {
-    width: 39.063vw;
     display: block;
     position: absolute;
-    left: calc(50% - 19.531vw);
-    bottom: -3.906vw;
     z-index: 1;
 }
 #inosuke-head {
-    width: 19.531vw;
     cursor: pointer;
     display: block;
     background-color: #fff;
-    padding: 1.563vw;
     position: absolute;
     z-index: 2;
-    left: calc(50% - 7.813vw);
-    top: 5.469vw;
     transform: rotate(15deg);
     box-shadow: 0.391vw 0.625vw 0.781vw rgba(0, 0, 0, 0.36);
 }
