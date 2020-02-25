@@ -1,13 +1,19 @@
 import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from '../sagas'
 import reducers from '../reducers'
 import { cards } from '../actions'
 const { fetchItems } = cards
 
+const sagaMiddleware = createSagaMiddleware()
+
 const store = createStore(
     reducers,
-    applyMiddleware(thunk)
+    applyMiddleware(sagaMiddleware)
   )
+
+sagaMiddleware.run(rootSaga)
+
 if (store.getState().cards.length === 0) {
   store.dispatch<any>(fetchItems())
 }

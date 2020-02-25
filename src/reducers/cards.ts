@@ -12,8 +12,21 @@ const initialState: any = []
 
 export default (state = initialState, action: any) => {
   switch (action.type) {
-    case cards.GET_ITEMS:
-      return update(state, { $set: action.payload })
+    case cards.FETCH_ITEMS_SUCCESS:
+      const arr = []
+      for (let i = 0; i < action.payload.length; i++) {
+        arr.push(
+          {
+            title: action.payload[i].name,
+            text: action.payload[i].model + ', ' + action.payload[i].manufacturer,
+            id: i
+          }
+        )
+      }
+      return update(state, { $push: arr })
+    case cards.FETCH_ITEMS_ERROR:
+      console.log('Failed to fetch items :(')
+      return state
     case cards.ADD_ITEM:
       return update(state, { $push: [{
         title: action.payload.title,
