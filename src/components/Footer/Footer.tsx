@@ -1,5 +1,6 @@
 import React from 'react'
-import './Footer.scss'
+//import './Footer.scss'
+import StyledFooter from './StyledFooter'
 
 interface IProps {
   footerText: string
@@ -12,7 +13,9 @@ const Footer: React.FC<IProps> = ({ footerText }: IProps) => {
   console.log('%cСорян за помилки в консолі :(', 'font-size: 18px; color: orange')
 
   return (
-    <footer>{footerText}</footer>
+    <StyledFooter>
+      <footer>{footerText}</footer>
+    </StyledFooter>
   )
 }
 
